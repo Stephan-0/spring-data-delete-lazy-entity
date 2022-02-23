@@ -23,7 +23,7 @@ public class ChildEntity {
 
     @Version
     @Column(name = "lockversion")
-    private Integer version;
+    Integer version;
 
     @OneToMany(mappedBy = "child", fetch = FetchType.LAZY)
     private final Set<ParentEntity> parents = new HashSet<>();
