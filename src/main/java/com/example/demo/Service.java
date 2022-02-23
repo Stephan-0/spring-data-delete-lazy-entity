@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
@@ -35,6 +36,8 @@ public class Service {
         final ChildEntity childEntity = parentEntity.getChild();
 
         parentEntity.removeChild();
+
+        Assert.notNull(childEntity.version, "The version attribute of a persisted instance should be not null.");
 
         childDao.delete(childEntity);
     }
